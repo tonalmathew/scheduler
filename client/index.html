@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <!-- <transition name="fade">
+                    <div class="alert alert-success" v-if="filterDate != undefined"> Date selected is: {{formattedDate}}</div>
+                </transition> -->
+                <div v-if="myModel">
+                    <transition name="model">
+                        <div class="modal-mask">
+                            <div class="modal-wrapper">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form>
+                                            <div class="modal-header">
+                                                {{formattedDate}}
+                                                <button type="button " class="close " @click="myModel=false "><span aria-hidden="true ">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body ">
+                                                <div class="form-group ">
+                                                    <label>Enter First Name</label>
+                                                    <input type="text " v-model="editWindow.title " name="title " class="form-control" id="recipient-name" required>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label>Enter Last Name</label>
+                                                    <textarea class="form-control " v-model="editWindow.description " name="decription " id="message-text" required></textarea>
+                                                </div>
+                                                <br />
+                                                <div align="center ">
+                                                    <button type="button " class="btn btn-primary " @click.prevent="addData ">Add</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+
+
+
+                <div id="app-table " class="table-responsive ">
+                    <table class="table table-bordered fullscreen ">
+                        <thead class="thead-default ">
+                            <tr>
+                                <th colspan="1 ">
+                                    <a href="# " class="prev " v-on:click="previousMonth ">«</a>
+                                </th>
+                                <th colspan="5 " class="center-title ">
+                                    {{currentMonthAndYear}}
+                                </th>
+                                <th colspan="1 ">
+                                    <a href="# " class="next " v-on:click="nextMonth ">»</a>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>M</th>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>T</th>
+                                <th>F</th>
+                                <th>S</th>
+                                <th>S</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody-default " data-bind="foreach:gridArray ">
+                            <tr v-for="item in gridArray ">
+                                <td v-for="data in item ">
+                                    <h3 v-on:click="setDate(data) " v-bind:class="{ 'cal-selected':isActive(data)} ">
+                                        {{data.getDate()}}
+                                    </h3>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script src="client.js "></script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx " crossorigin="anonymous "></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js " integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s " crossorigin="anonymous "></script>
+    -->
+</body>
+
+</html>

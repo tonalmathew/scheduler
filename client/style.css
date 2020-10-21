@@ -1,0 +1,57 @@
+.fullscreen {
+    height: 600px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0
+}
+
+.thead-default,
+.thead-default a {
+    background-color: #00bcd4;
+    color: #fff;
+}
+
+.tbody-default {
+    background-color: #eee;
+}
+
+a {
+    padding: 10px 10px 10px 10px
+}
+
+.center-title {
+    text-align: center;
+}
+
+a.cal-selected,
+a.cal-selected:focus {
+    background-color: #368CB2;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    /*font-size: 1.8em*/
+}
+
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
