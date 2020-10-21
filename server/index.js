@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const monk = require('monk');
 
 
 
@@ -7,6 +8,8 @@ const cors = require('cors');
 
 const app = express();
 
+const db = monk('localhost/meower');
+const data = db.get('data');
 
 app.use(cors());
 app.use(express.json());
@@ -18,8 +21,33 @@ app.get('/', (req, res) => {
     });
 });
 
+
+function isValidMew(mew) {
+    return mew.title && mew.title.toString().trim() !== '' &&
+        mew.description && mew.description.toString().trim() !== '';
+}
+
 app.post('/data', (req, res) => {
-    console.log(req.body);
+    if (isValidMew(req.body)) {
+        const mew = {
+            title: req.body.title.toString(),
+            description: req.body.description.toString(),
+            created: new Date()
+        };
+        console.log(req.body);
+        data
+            .insert(mew)
+            .then(createdData => {
+                res.json(createdData);
+            });
+
+
+    } else {
+        // res.status(422);
+        // res.json({
+        //     message: 'Hey! Title and Description are required!'
+        // });
+    }
 });
 
 

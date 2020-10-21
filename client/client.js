@@ -46,16 +46,16 @@ var app = new Vue({
             this.myModel = false;
             console.log(this.dataItem);
             fetch(API_URL, {
-                method: 'POST',
-                body: JSON.stringify(this.dataItem),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
-            // .then(response => response.json())
-            // .then(createdSchedule => {
-            //     console.log(createdSchedule);
-            // });
+                    method: 'POST',
+                    body: JSON.stringify(this.editWindow),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(createdData => {
+                    console.log(createdData);
+                });
         },
         setDate: function(date) {
             this.myModel = true;
