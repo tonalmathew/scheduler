@@ -1,8 +1,3 @@
-const dataArray = [{
-    title: 'sample title',
-    description: 'sample description'
-}];
-
 const API_URL = "http://localhost:7000/data"
 
 
@@ -12,7 +7,6 @@ var app = new Vue({
         filterDate: undefined,
         selectedMonth: new Date(),
         currentMonthAndYear: 'Oct 2020',
-        dataItem: dataArray,
         editWindow: {
             title: "",
             description: "",
@@ -34,20 +28,15 @@ var app = new Vue({
             this.currentMonthAndYear = moment(this.selectedMonth).format('MMM YYYY');
         },
         addData: function() {
-            console.log(this.editWindow);
-            const {
-                title,
-                description,
-            } = this.editWindow;
-            this.dataItem.push({
-                title,
-                description,
-            });
+            const mainData = {
+                date: this.formattedDate,
+                title: this.editWindow.title,
+                description: this.editWindow.description
+            }
             this.myModel = false;
-            console.log(this.dataItem);
             fetch(API_URL, {
                     method: 'POST',
-                    body: JSON.stringify(this.editWindow),
+                    body: JSON.stringify(mainData),
                     headers: {
                         'content-type': 'application/json'
                     }
@@ -56,6 +45,16 @@ var app = new Vue({
                 .then(createdData => {
                     console.log(createdData);
                 });
+
+            this.editWindow = {
+                title: "",
+                description: ""
+            }
+            fetch(API_URL)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
         },
         setDate: function(date) {
             this.myModel = true;
@@ -106,7 +105,7 @@ var app = new Vue({
             return grid;
         },
         formattedDate: function() {
-            return this.filterDate ? moment(this.filterDate).format('lll') : '';
+            return this.filterDate ? moment(this.filterDate).format('l') : '';
         }
     }
 
