@@ -1,5 +1,19 @@
+body {
+    /* background-color: #01c5c4; */
+    background-color: #c5eedc;
+}
+
+.cards {
+    margin: 15px!important;
+}
+
 .fullscreen {
-    height: 600px;
+    height: 500px;
+}
+
+.table-responsive {
+    width: 900px;
+    padding-top: 100px;
 }
 
 .fade-enter-active,
@@ -14,12 +28,18 @@
 
 .thead-default,
 .thead-default a {
-    background-color: #00bcd4;
-    color: #fff;
+    color: #d7385e;
 }
 
-.tbody-default {
-    background-color: #eee;
+.table td,
+.table th {
+    padding: .75rem;
+    border-top: none;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: none;
 }
 
 a {
@@ -32,11 +52,9 @@ a {
 
 a.cal-selected,
 a.cal-selected:focus {
-    background-color: #368CB2;
     color: #fff;
     border-radius: 10px;
     font-weight: bold;
-    /*font-size: 1.8em*/
 }
 
 .modal-mask {
@@ -54,4 +72,141 @@ a.cal-selected:focus {
 .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
+}
+
+.neumorphism-2 {
+    box-shadow: inset 0px 0px 0px #c5eedc, inset -5px 0px 5px rgba(94, 104, 121, 0.692);
+}
+
+div .card-container {
+    margin-top: 100px;
+    padding-top: 50px;
+    height: 500px;
+    width: 450px;
+}
+
+.scrollbar {
+    overflow-y: scroll;
+    margin-bottom: 25px;
+}
+
+#wrapper {
+    width: 00px;
+    margin: auto;
+}
+
+#style-3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #c5eedc;
+}
+
+#style-3::-webkit-scrollbar {
+    width: 6px;
+    background-color: #c5eedc;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+    background-color: #794c74;
+    border-radius: 20px;
+}
+
+.number {
+    text-decoration: none!important;
+    color: #000000;
+    padding: 0;
+}
+
+.number-active:hover {
+    color: #c060a1;
+}
+
+.delete-icon {
+    text-decoration: none;
+    float: right;
+    color: #c060a1;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.delete-icon:hover {
+    color: #9f4683;
+}
+
+.card-date {
+    float: right;
+    color: #9f4683;
+}
+
+.card-footer {
+    height: 50px;
+}
+
+@media (max-width: 1350px) {
+    #app-table {
+        /* background-color: rgb(255, 230, 0); */
+        width: 100%;
+        padding-left: 300px;
+    }
+    .table {
+        width: 600px!important;
+        padding-left: 300px!important;
+    }
+    .table-row {
+        padding-left: 150px;
+    }
+}
+
+@media (max-width: 1000px) {
+    #app-table {
+        /* background-color: rgb(255, 230, 0); */
+        width: 100%;
+        padding-left: 50px!important;
+    }
+    div .card-container {
+        margin-top: 100px;
+        padding-top: 50px;
+        height: 500px;
+        width: 100%;
+    }
+    .cards {
+        width: 95%!important;
+    }
+}
+
+@media (max-width: 787px) {
+    #app-table {
+        /* background-color: rgb(255, 230, 0); */
+        width: 80%!important;
+        padding-left: 50px!important;
+    }
+    div .card-container {
+        margin-top: 100px;
+        padding-top: 50px;
+        height: 500px;
+        width: 100%;
+    }
+    .cards {
+        width: 95%!important;
+    }
+}
+
+@media (max-width: 575px) {
+    #app-table {
+        /* background-color: rgb(255, 230, 0); */
+        width: 80%!important;
+        padding-left: 50px!important;
+    }
+    div .card-container {
+        margin-top: 100px;
+        padding-top: 50px;
+        height: 500px;
+        width: 100%;
+    }
+    .cards {
+        width: 95%!important;
+    }
+    #wrapper {
+        width: 100%;
+        margin: auto;
+    }
 }

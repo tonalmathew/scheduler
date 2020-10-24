@@ -1,6 +1,6 @@
-const API_URL = "http://localhost:7000/data"
+const API_URL = "http://localhost:7000/data/"
 
-
+const datasMain = [];
 var app = new Vue({
     el: '#app',
     data: {
@@ -12,7 +12,10 @@ var app = new Vue({
             description: "",
 
         },
+        datas: datasMain,
         myModel: false,
+
+
     },
     methods: {
         previousMonth: function() {
@@ -42,19 +45,43 @@ var app = new Vue({
                     }
                 })
                 .then(response => response.json())
-                .then(createdData => {
-                    console.log(createdData);
-                });
-
+                // .then(createdData => {
+                //     // console.log(createdData);
+                // });
+            location.reload();
             this.editWindow = {
-                title: "",
-                description: ""
-            }
+                    title: "",
+                    description: ""
+                }
+                // getingData();
+
+
+        },
+        getingData: function() {
             fetch(API_URL)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+
+                    this.datas.push(data);
+                    // console.log(this.datas);
+
                 })
+        },
+        deleteItem: function(dat) {
+            console.log(dat);
+            fetch(API_URL, {
+                    method: 'DELETE',
+                    body: JSON.stringify(dat),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(createdData => {
+                    console.log(createdData);
+                });
+            this.getingData()
+            location.reload();
         },
         setDate: function(date) {
             this.myModel = true;
@@ -97,6 +124,10 @@ var app = new Vue({
 
             return calendarMatrix;
         }
+    },
+    beforeMount() {
+        this.getingData()
+
     },
     computed: {
         // a computed getter

@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 
@@ -16,40 +17,53 @@
 </head>
 
 <body>
-    <div class="container" id="app">
+    <div class="container-fluid" id="app">
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div id="wrapper" class="col-lg-4 col-md-12 col-sm-12">
+                <div class="scrollbar card-container neumorphism-2" id="style-3">
+                    <div class="force-overflow"></div>
+
+
+                    <div class="card cards " style="width: 25rem;" v-for="dat in datas[0].slice().reverse()" :key="dat._id">
+                        <div class="card-body ">
+                            <p class="card-date ">Date: {{ dat.date }}</p>
+                            <h5 class="card-title ">{{ dat.title }}</h5>
+
+                            <p class="card-text ">{{ dat.description }}</p>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <small>created: {{ dat.created }}</small>
+                            <a @click="deleteItem(dat)" href="#" class="delete-icon"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+
                     </div>
+
+
+
                 </div>
             </div>
-            <div class="col-lg-8 col-md-12 col-sm-12">
-                <!-- <transition name="fade">
-                    <div class="alert alert-success" v-if="filterDate != undefined"> Date selected is: {{formattedDate}}</div>
-                </transition> -->
-                <div v-if="myModel">
-                    <transition name="model">
-                        <div class="modal-mask">
-                            <div class="modal-wrapper">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
+            <div class="col-lg-8 col-md-12 col-sm-12 table-row">
+                <div v-if="myModel ">
+                    <transition name="model ">
+                        <div class="modal-mask ">
+                            <div class="modal-wrapper ">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content ">
                                         <form>
-                                            <div class="modal-header">
+                                            <div class="modal-header ">
                                                 {{formattedDate}}
                                                 <button type="button " class="close " @click="myModel=false "><span aria-hidden="true ">&times;</span></button>
                                             </div>
                                             <div class="modal-body ">
                                                 <div class="form-group ">
-                                                    <label>Enter First Name</label>
-                                                    <input type="text " v-model="editWindow.title " name="title " class="form-control" id="recipient-name" required>
+                                                    <label>Enter Title</label>
+                                                    <input type="text " v-model="editWindow.title " name="title " class="form-control " id="recipient-name " required>
                                                 </div>
                                                 <div class="form-group ">
-                                                    <label>Enter Last Name</label>
-                                                    <textarea class="form-control " v-model="editWindow.description " name="decription " id="message-text" required></textarea>
+                                                    <label>Enter Description</label>
+                                                    <textarea class="form-control " v-model="editWindow.description " name="decription " id="message-text " required></textarea>
                                                 </div>
                                                 <br />
                                                 <div align="center ">
@@ -67,7 +81,7 @@
 
 
                 <div id="app-table " class="table-responsive ">
-                    <table class="table table-bordered fullscreen ">
+                    <table class="table fullscreen ">
                         <thead class="thead-default ">
                             <tr>
                                 <th colspan="1 ">
@@ -81,21 +95,23 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th>M</th>
-                                <th>T</th>
-                                <th>W</th>
-                                <th>T</th>
-                                <th>F</th>
-                                <th>S</th>
-                                <th>S</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                                <th>Sun</th>
                             </tr>
                         </thead>
                         <tbody class="tbody-default " data-bind="foreach:gridArray ">
                             <tr v-for="item in gridArray ">
                                 <td v-for="data in item ">
-                                    <h3 v-on:click="setDate(data) " v-bind:class="{ 'cal-selected':isActive(data)} ">
-                                        {{data.getDate()}}
-                                    </h3>
+                                    <a href="#" class="number ">
+                                        <h3 class="number-active " v-on:click="setDate(data) " v-bind:class="{ 'cal-selected':isActive(data)} ">
+                                            {{data.getDate()}}
+                                        </h3>
+                                    </a>
                                 </td>
                             </tr>
 
